@@ -19,9 +19,27 @@
     --blue: #3fc7ff;    /* cloud predictor */
     --orange: #ff8a4c;  /* kisan sahayak */
     --amber: #ffd166;
+    --header-bg: rgba(9,12,20,0.55);
+    --panel-2: #0b0f1c;
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html[data-theme="light"]{
+    --bg: #f2e8d5;
+    --bg-2: #ece0c8;
+    --panel: #f7efdd;
+    --panel-line: #d8c9a8;
+    --ink: #4a3f2c;
+    --ink-dim: #7a6c50;
+    --green: #4c8c5c;
+    --violet: #8a6b9e;
+    --blue: #4d7f8c;
+    --orange: #b06a2e;
+    --amber: #a1791f;
+    --header-bg: rgba(242,232,213,0.75);
+    --panel-2: #ece0c8;
   }
 
   *{ box-sizing: border-box; }
@@ -32,6 +50,7 @@
     color: var(--ink);
     font-family: var(--font-body);
     overflow-x: hidden;
+    transition: background .35s ease, color .35s ease;
   }
   ::selection{ background: var(--green); color: #041912; }
 
@@ -64,7 +83,7 @@
     display:flex; align-items:center; justify-content: space-between;
     padding: 18px 6vw;
     backdrop-filter: blur(10px);
-    background: rgba(9,12,20,0.55);
+    background: var(--header-bg);
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   .logo{
@@ -84,6 +103,20 @@
   }
   nav a:hover{ color: var(--ink); }
   nav a:hover::after{ width:100%; }
+
+  .theme-toggle{
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid var(--panel-line); background: var(--panel);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; margin-left: 24px; flex-shrink:0;
+    transition: border-color .25s ease, background .25s ease, transform .2s ease;
+  }
+  .theme-toggle:hover{ border-color: var(--green); transform: translateY(-2px); }
+  .theme-toggle svg{ width:18px; height:18px; stroke: var(--ink); fill:none; stroke-width:1.8; }
+  .theme-toggle .icon-moon{ display:none; }
+  html[data-theme="light"] .theme-toggle .icon-sun{ display:none; }
+  html[data-theme="light"] .theme-toggle .icon-moon{ display:block; }
+  .nav-wrap{ display:flex; align-items:center; }
 
   section{ position: relative; z-index: 1; padding: 64px 6vw; max-width: 1280px; margin: 0 auto; }
 
@@ -221,18 +254,18 @@
   .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
   .chip{
     font-family: var(--font-mono); font-size: 12px; padding: 7px 13px; border-radius:999px;
-    background: rgba(255,255,255,0.03); border: 1px solid var(--panel-line); color: var(--ink-dim);
-    cursor: grab; user-select:none; transition: background .2s ease, color .2s ease, transform .15s ease;
+    background: color-mix(in srgb, var(--accent, var(--green)) 12%, transparent);
+    border: 1px solid var(--accent, var(--green)); color: var(--accent, var(--green));
+    user-select:none; transition: background .2s ease, color .2s ease, transform .15s ease;
   }
-  .chip:hover{ background: rgba(255,255,255,0.07); color: var(--ink); transform: translateY(-2px); }
-  .chip:active{ cursor: grabbing; }
+  .chip:hover{ background: var(--accent, var(--green)); color: #04170f; transform: translateY(-2px); }
 
   /* ================= PROJECTS ================= */
   .proj-track{
     display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 26px; align-items: stretch;
   }
   .proj-card{
-    background: linear-gradient(180deg, var(--panel), #0b0f1c);
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
     border: 1px solid var(--panel-line); border-radius: 18px; padding: 30px;
     position: relative; overflow: hidden; transform-style: preserve-3d;
     transition: border-color .3s ease, box-shadow .3s ease;
@@ -326,6 +359,7 @@
     .crosshair{ display:none; }
     #about .about-grid{ grid-template-columns: 1fr; }
     nav ul{ display:none; }
+    .theme-toggle{ margin-left: 0; }
     section{ padding: 54px 6vw; }
     .proj-track{ grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
   }
@@ -367,16 +401,22 @@
 
 <header>
   <div class="logo">Dhanush<span>_/Billa</span></div>
-  <nav>
-    <ul>
-      <li><a href="#about">about</a></li>
-      <li><a href="#skills">skills</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="#experience">experience</a></li>
-      <li><a href="#education">education</a></li>
-      <li><a href="#contact">contact</a></li>
-    </ul>
-  </nav>
+  <div class="nav-wrap">
+    <nav>
+      <ul>
+        <li><a href="#about">about</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#experience">experience</a></li>
+        <li><a href="#education">education</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle eye-protection mode" title="Toggle eye-protection (warm) mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"></path></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"></path></svg>
+    </button>
+  </div>
 </header>
 
 <section id="hero">
@@ -425,41 +465,40 @@
     <div class="skill-module reveal" style="--accent: var(--blue)">
       <h3>Languages &amp; Databases</h3>
       <div class="chip-row">
-        <div class="chip" draggable="true">Python</div>
-        <div class="chip" draggable="true">SQL</div>
-        <div class="chip" draggable="true">Java</div>
-        <div class="chip" draggable="true">C</div>
-        <div class="chip" draggable="true">MySQL</div>
+        <div class="chip">Python</div>
+        <div class="chip">SQL</div>
+        <div class="chip">Java</div>
+        <div class="chip">C</div>
+        <div class="chip">MySQL</div>
       </div>
     </div>
     <div class="skill-module reveal" style="--accent: var(--green)">
       <h3>Data Engineering</h3>
       <div class="chip-row">
-        <div class="chip" draggable="true">Data Pipeline Development</div>
-        <div class="chip" draggable="true">Real-Time Data Processing</div>
-        <div class="chip" draggable="true">Database Design &amp; Querying</div>
+        <div class="chip">Data Pipeline Development</div>
+        <div class="chip">Real-Time Data Processing</div>
+        <div class="chip">Database Design &amp; Querying</div>
       </div>
     </div>
     <div class="skill-module reveal" style="--accent: var(--violet)">
       <h3>Cloud</h3>
       <div class="chip-row">
-        <div class="chip" draggable="true">AWS EC2</div>
-        <div class="chip" draggable="true">AWS S3</div>
-        <div class="chip" draggable="true">AWS RDS</div>
-        <div class="chip" draggable="true">Route 53</div>
+        <div class="chip">AWS EC2</div>
+        <div class="chip">AWS S3</div>
+        <div class="chip">AWS RDS</div>
+        <div class="chip">Route 53</div>
       </div>
     </div>
     <div class="skill-module reveal" style="--accent: var(--orange)">
       <h3>Core Concepts</h3>
       <div class="chip-row">
-        <div class="chip" draggable="true">APIs</div>
-        <div class="chip" draggable="true">OOP</div>
-        <div class="chip" draggable="true">Analytical &amp; Problem-Solving</div>
-        <div class="chip" draggable="true">Business Requirement Analysis</div>
+        <div class="chip">APIs</div>
+        <div class="chip">OOP</div>
+        <div class="chip">Analytical &amp; Problem-Solving</div>
+        <div class="chip">Business Requirement Analysis</div>
       </div>
     </div>
   </div>
-  <p class="proj-hint reveal" style="margin-top:20px;">tip — <span>drag the chips</span> around, they don't bite.</p>
 </section>
 
 <section id="projects">
@@ -551,9 +590,29 @@
   </div>
 </section>
 
-<footer>© 2026 Dhanush Billa — built with curiosity and a little too much coffee.</footer>
+<footer>© 2026 Dhanush Billa</footer>
 
 <script>
+  // theme toggle (light / dark)
+  (function(){
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = stored || (prefersLight ? 'light' : 'dark');
+    if(initial === 'light'){ root.setAttribute('data-theme', 'light'); }
+    toggleBtn.addEventListener('click', () => {
+      const isLight = root.getAttribute('data-theme') === 'light';
+      if(isLight){
+        root.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        root.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  })();
+
   // scroll progress
   const progress = document.getElementById('progress');
   window.addEventListener('scroll', () => {
@@ -638,34 +697,6 @@
       btn.style.transform = `translate(${x*0.25}px, ${y*0.5}px)`;
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
-  });
-
-  // draggable chips (simple free-drag within their row)
-  let dragEl = null, offsetX = 0, offsetY = 0;
-  document.querySelectorAll('.chip').forEach(chip => {
-    chip.addEventListener('mousedown', (e) => {
-      dragEl = chip;
-      chip.style.position = 'relative';
-      chip.style.zIndex = 5;
-      offsetX = e.clientX; offsetY = e.clientY;
-      const startLeft = chip.offsetLeft, startTop = chip.offsetTop;
-      chip._start = { x: e.clientX, y: e.clientY, left: parseFloat(chip.style.left)||0, top: parseFloat(chip.style.top)||0 };
-    });
-  });
-  document.addEventListener('mousemove', (e) => {
-    if(!dragEl) return;
-    const dx = e.clientX - dragEl._start.x;
-    const dy = e.clientY - dragEl._start.y;
-    dragEl.style.left = (dragEl._start.left + dx) + 'px';
-    dragEl.style.top = (dragEl._start.top + dy) + 'px';
-  });
-  document.addEventListener('mouseup', () => {
-    if(dragEl){
-      dragEl.style.transition = 'left .4s ease, top .4s ease';
-      dragEl.style.left = '0px'; dragEl.style.top = '0px';
-      setTimeout(() => { dragEl.style.transition = ''; dragEl.style.zIndex = ''; }, 400);
-      dragEl = null;
-    }
   });
 </script>
 
