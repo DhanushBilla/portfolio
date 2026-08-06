@@ -85,7 +85,7 @@
   nav a:hover{ color: var(--ink); }
   nav a:hover::after{ width:100%; }
 
-  section{ position: relative; z-index: 1; padding: 120px 6vw; max-width: 1280px; margin: 0 auto; }
+  section{ position: relative; z-index: 1; padding: 64px 6vw; max-width: 1280px; margin: 0 auto; }
 
   .eyebrow{
     font-family: var(--font-mono); font-size: 12px; letter-spacing: 3px;
@@ -96,7 +96,7 @@
 
   h2.section-title{
     font-family: var(--font-display); font-weight:600; font-size: clamp(28px,4vw,44px);
-    margin: 0 0 46px 0; letter-spacing: -0.5px;
+    margin: 0 0 30px 0; letter-spacing: -0.5px;
   }
 
   /* ================= HERO ================= */
@@ -229,18 +229,17 @@
 
   /* ================= PROJECTS ================= */
   .proj-track{
-    display:flex; gap: 26px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px;
-    -ms-overflow-style: none; scrollbar-width: none;
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 26px; align-items: stretch;
   }
-  .proj-track::-webkit-scrollbar{ display:none; }
   .proj-card{
-    scroll-snap-align: start; flex: 0 0 min(420px, 84vw);
     background: linear-gradient(180deg, var(--panel), #0b0f1c);
     border: 1px solid var(--panel-line); border-radius: 18px; padding: 30px;
     position: relative; overflow: hidden; transform-style: preserve-3d;
     transition: border-color .3s ease, box-shadow .3s ease;
     perspective: 800px;
+    display:flex; flex-direction:column;
   }
+  .proj-card p{ flex-grow:1; }
   .proj-card:hover{ border-color: var(--accent); box-shadow: 0 20px 50px -20px var(--accent); }
   .proj-scanline{
     position:absolute; left:0; right:0; height: 2px; background: var(--accent);
@@ -291,15 +290,19 @@
   .edu-list{ display:flex; flex-direction:column; }
   .edu-item{
     display:grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 26px 0; border-bottom:1px solid var(--panel-line);
-    position:relative;
+    position:relative; border-left: 2px solid var(--accent, var(--violet)); padding-left: 18px;
   }
   .edu-item:last-child{ border-bottom:none; }
-  .edu-year{ font-family: var(--font-mono); color: var(--violet); font-size: 14px; }
+  .edu-year{ font-family: var(--font-mono); color: var(--accent, var(--violet)); font-size: 14px; }
   .edu-item h4{ margin:0 0 6px 0; font-family: var(--font-display); font-size:18px; }
   .edu-item .school{ color: var(--ink-dim); font-size: 13.5px; }
   .edu-item .badge{
     display:inline-block; margin-top:10px; font-family: var(--font-mono); font-size: 11px;
-    color: var(--amber); border:1px solid rgba(255,209,102,0.4); padding: 4px 10px; border-radius:6px;
+    color: var(--accent, var(--amber)); border:1px solid var(--accent, var(--amber)); padding: 4px 10px; border-radius:6px;
+    opacity: 0.9;
+  }
+  @media (max-width: 560px){
+    .edu-item{ grid-template-columns: 1fr; gap: 6px; }
   }
 
   /* ================= CONTACT ================= */
@@ -323,7 +326,29 @@
     .crosshair{ display:none; }
     #about .about-grid{ grid-template-columns: 1fr; }
     nav ul{ display:none; }
-    section{ padding: 90px 6vw; }
+    section{ padding: 54px 6vw; }
+    .proj-track{ grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
+  }
+
+  @media (max-width: 640px){
+    section{ padding: 42px 5vw; }
+    .hero-meta{ gap: 24px; }
+    .hero-cta{ flex-direction: column; align-items: stretch; }
+    .hero-cta .btn{ justify-content:center; }
+    .terminal-body{ padding: 22px 18px; }
+    .contact-links{ gap: 14px; }
+    .contact-links a{ padding: 10px 16px; font-size: 12px; }
+    .skills-grid{ grid-template-columns: 1fr; }
+    .proj-track{ grid-template-columns: 1fr; }
+    .about-card{ padding: 20px; }
+    h1.name{ letter-spacing: -1px; }
+  }
+
+  @media (max-width: 420px){
+    .hero-kicker{ font-size: 12px; }
+    .hero-meta{ gap: 18px; }
+    .hero-meta .num{ font-size: 22px; }
+    #contact p{ padding: 0 4px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -341,7 +366,7 @@
 </div>
 
 <header>
-  <div class="logo">DB<span>_/portfolio</span></div>
+  <div class="logo">Dhanush<span>_/Billa</span></div>
   <nav>
     <ul>
       <li><a href="#about">about</a></li>
@@ -378,7 +403,7 @@
 </section>
 
 <section id="about">
-  <div class="eyebrow">01 · About</div>
+  <div class="eyebrow">About</div>
   <h2 class="section-title reveal">Turning raw data<br>into working pipelines.</h2>
   <div class="about-grid">
     <p class="reveal">Dhanush is an Information Technology student with a strong foundation in <strong style="color:var(--ink)">Python, SQL and cloud-hosted (AWS) development</strong>, built through projects that turn real-world image and satellite data into working, real-time systems. He brings strong analytical and problem-solving skills, with experience translating requirements into solutions across teams during his internships. He's looking for a Data Engineering internship to build hands-on expertise in modern pipelines and cloud platforms.</p>
@@ -394,11 +419,11 @@
 </section>
 
 <section id="skills">
-  <div class="eyebrow">02 · Skills</div>
+  <div class="eyebrow">Skills</div>
   <h2 class="section-title reveal">The stack behind the systems.</h2>
   <div class="skills-grid">
     <div class="skill-module reveal" style="--accent: var(--blue)">
-      <h3><span class="idx">01</span> Languages &amp; Databases</h3>
+      <h3>Languages &amp; Databases</h3>
       <div class="chip-row">
         <div class="chip" draggable="true">Python</div>
         <div class="chip" draggable="true">SQL</div>
@@ -408,7 +433,7 @@
       </div>
     </div>
     <div class="skill-module reveal" style="--accent: var(--green)">
-      <h3><span class="idx">02</span> Data Engineering</h3>
+      <h3>Data Engineering</h3>
       <div class="chip-row">
         <div class="chip" draggable="true">Data Pipeline Development</div>
         <div class="chip" draggable="true">Real-Time Data Processing</div>
@@ -416,7 +441,7 @@
       </div>
     </div>
     <div class="skill-module reveal" style="--accent: var(--violet)">
-      <h3><span class="idx">03</span> Cloud</h3>
+      <h3>Cloud</h3>
       <div class="chip-row">
         <div class="chip" draggable="true">AWS EC2</div>
         <div class="chip" draggable="true">AWS S3</div>
@@ -425,7 +450,7 @@
       </div>
     </div>
     <div class="skill-module reveal" style="--accent: var(--orange)">
-      <h3><span class="idx">04</span> Core Concepts</h3>
+      <h3>Core Concepts</h3>
       <div class="chip-row">
         <div class="chip" draggable="true">APIs</div>
         <div class="chip" draggable="true">OOP</div>
@@ -438,7 +463,7 @@
 </section>
 
 <section id="projects">
-  <div class="eyebrow">03 · Projects</div>
+  <div class="eyebrow">Projects</div>
   <h2 class="section-title reveal">Three pipelines worth building.</h2>
   <div class="proj-track" id="projTrack">
     <div class="proj-card" style="--accent: var(--green)" data-tilt>
@@ -463,11 +488,11 @@
       <div class="proj-tools"><span>Flutter</span><span>Dart</span><span>Gemini API</span><span>Weather API</span><span>Android Studio</span></div>
     </div>
   </div>
-  <p class="proj-hint reveal">tip — <span>tilt your cursor</span> over a card, or swipe on mobile.</p>
+  <p class="proj-hint reveal">tip — <span>tilt your cursor</span> over a card to see it react.</p>
 </section>
 
 <section id="experience">
-  <div class="eyebrow">04 · Experience</div>
+  <div class="eyebrow">Experience</div>
   <h2 class="section-title reveal">Logged hours.</h2>
   <div class="terminal reveal">
     <div class="terminal-bar"><div class="tdot t1"></div><div class="tdot t2"></div><div class="tdot t3"></div><span>dhanush@career — zsh</span></div>
@@ -483,10 +508,10 @@
 </section>
 
 <section id="education">
-  <div class="eyebrow">05 · Education</div>
+  <div class="eyebrow">Education</div>
   <h2 class="section-title reveal">The record so far.</h2>
   <div class="edu-list">
-    <div class="edu-item reveal">
+    <div class="edu-item reveal" style="--accent: var(--green)">
       <div class="edu-year">2023 — 2027</div>
       <div>
         <h4>B.Tech, Information Technology</h4>
@@ -494,7 +519,7 @@
         <span class="badge">Currently Pursuing</span>
       </div>
     </div>
-    <div class="edu-item reveal">
+    <div class="edu-item reveal" style="--accent: var(--blue)">
       <div class="edu-year">2023</div>
       <div>
         <h4>Class XII — BIEAP</h4>
@@ -502,7 +527,7 @@
         <span class="badge">79%</span>
       </div>
     </div>
-    <div class="edu-item reveal">
+    <div class="edu-item reveal" style="--accent: var(--orange)">
       <div class="edu-year">2021</div>
       <div>
         <h4>Class X — SSC</h4>
@@ -514,7 +539,7 @@
 </section>
 
 <section id="contact">
-  <div class="eyebrow" style="justify-content:center;">06 · Contact</div>
+  <div class="eyebrow" style="justify-content:center;">Contact</div>
   <h2 class="reveal">Let's build something.</h2>
   <p class="reveal">Available to join immediately — open to Data Engineering internships in modern pipelines and cloud platforms. Reach out — I reply fast.</p>
   <div class="contact-links reveal">
