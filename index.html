@@ -21,6 +21,8 @@
     --amber: #ffd166;
     --header-bg: rgba(9,12,20,0.55);
     --panel-2: #0b0f1c;
+    --terminal-bg: #060810;
+    --terminal-bar-bg: #0c1120;
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
@@ -31,15 +33,17 @@
     --bg-2: #ece0c8;
     --panel: #f7efdd;
     --panel-line: #d8c9a8;
-    --ink: #4a3f2c;
-    --ink-dim: #7a6c50;
-    --green: #4c8c5c;
-    --violet: #8a6b9e;
-    --blue: #4d7f8c;
-    --orange: #b06a2e;
-    --amber: #a1791f;
+    --ink: #0a0a0a;
+    --ink-dim: #3a3226;
+    --green: #226b3a;
+    --violet: #5a3d78;
+    --blue: #1c5a68;
+    --orange: #8a4816;
+    --amber: #7a5a10;
     --header-bg: rgba(242,232,213,0.75);
     --panel-2: #ece0c8;
+    --terminal-bg: #f7efdd;
+    --terminal-bar-bg: #ece0c8;
   }
 
   *{ box-sizing: border-box; }
@@ -301,11 +305,11 @@
 
   /* ================= EXPERIENCE / TIMELINE ================= */
   .terminal{
-    background: #060810; border: 1px solid var(--panel-line); border-radius: 14px; overflow:hidden;
+    background: var(--terminal-bg); border: 1px solid var(--panel-line); border-radius: 14px; overflow:hidden;
     box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7);
   }
   .terminal-bar{
-    display:flex; align-items:center; gap:8px; padding: 12px 18px; background: #0c1120; border-bottom:1px solid var(--panel-line);
+    display:flex; align-items:center; gap:8px; padding: 12px 18px; background: var(--terminal-bar-bg); border-bottom:1px solid var(--panel-line);
   }
   .terminal-bar .tdot{ width:10px; height:10px; border-radius:50%; }
   .t1{ background:#ff5f57; } .t2{ background:#febc2e; } .t3{ background:#28c840; }
@@ -590,7 +594,7 @@
   </div>
 </section>
 
-<footer>© 2026 Dhanush Billa</footer>
+<footer>© 2026 Dhanush Billa — built with curiosity and a little too much coffee.</footer>
 
 <script>
   // theme toggle (light / dark)
