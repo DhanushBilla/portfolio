@@ -48,17 +48,24 @@
 
   *{ box-sizing: border-box; }
   html{ scroll-behavior: smooth; }
+  *, *::before, *::after{
+    transition: background-color 5s ease, color 5s ease, border-color 5s ease, box-shadow 5s ease, fill 5s ease, stroke 5s ease;
+  }
   body{
     margin:0;
     background: var(--bg);
     color: var(--ink);
     font-family: var(--font-body);
     overflow-x: hidden;
-    transition: background .35s ease, color .35s ease;
   }
   ::selection{ background: var(--green); color: #041912; }
 
   a{ color: inherit; }
+
+  .theme-wipe{
+    position: fixed; inset: 0; z-index: 99999; pointer-events: none;
+    opacity: 0; clip-path: inset(0% 0 0% 0);
+  }
 
   /* ---------- background texture ---------- */
   .grid-noise{
@@ -295,6 +302,15 @@
 
   .proj-card h3{ font-family: var(--font-display); font-size: 23px; margin: 18px 0 12px 0; }
   .proj-card p{ color: var(--ink-dim); font-size: 14.5px; line-height:1.7; }
+
+  .proj-github{
+    display:inline-flex; align-items:center; gap:8px; margin-top:18px; align-self:flex-start;
+    font-family: var(--font-mono); font-size: 12.5px; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid var(--accent); color: var(--accent); text-decoration:none;
+    transition: background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .proj-github svg{ width:15px; height:15px; fill: currentColor; }
+  .proj-github:hover{ background: var(--accent); color: var(--bg); transform: translateY(-2px); }
   .proj-tools{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 18px; }
   .proj-tools span{
     font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim);
@@ -397,6 +413,7 @@
 <body>
 
 <div class="grid-noise"></div>
+<div class="theme-wipe" id="themeWipe"></div>
 <div class="progress" id="progress"></div>
 <div class="crosshair" id="crosshair">
   <svg viewBox="0 0 46 46"><path class="corner" d="M4 14 V4 H14"/><path class="corner" d="M32 4 H42 V14"/><path class="corner" d="M42 32 V42 H32"/><path class="corner" d="M14 42 H4 V32"/></svg>
@@ -515,6 +532,10 @@
       <h3>Criminal Face Detection System</h3>
       <p>Built an end-to-end data pipeline that ingests, processes, and matches facial image data against a centralized MySQL records database in real time, helping law enforcement teams identify individuals and streamlining investigation workflows.</p>
       <div class="proj-tools"><span>Python</span><span>OpenCV</span><span>Face Recognition</span><span>NumPy</span><span>Flask</span><span>MySQL</span></div>
+      <a class="proj-github" href="https://github.com/DhanushBilla-" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.19 1.18a11 11 0 0 1 5.8 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.62.23 2.82.11 3.12.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+        View on GitHub
+      </a>
     </div>
     <div class="proj-card" style="--accent: var(--blue)" data-tilt>
       <div class="proj-scanline"></div>
@@ -522,6 +543,10 @@
       <h3>Real-Time Cloud Predictor</h3>
       <p>Built a real-time data processing pipeline that ingests satellite imagery, detects cloud clusters, and forecasts their movement, speed, and trajectory — classifying conditions as Safe or Risk and triggering automatic email, phone, and device alerts for hazardous weather.</p>
       <div class="proj-tools"><span>Python</span><span>Flask</span><span>CNN</span><span>Computer Vision</span><span>SMTP</span><span>APIs</span></div>
+      <a class="proj-github" href="https://github.com/DhanushBilla-" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.19 1.18a11 11 0 0 1 5.8 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.62.23 2.82.11 3.12.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+        View on GitHub
+      </a>
     </div>
     <div class="proj-card" style="--accent: var(--orange)" data-tilt>
       <div class="proj-scanline"></div>
@@ -529,6 +554,10 @@
       <h3>Kisan Sahayak</h3>
       <p>An AI-powered Flutter app for plant disease detection using Gemini AI and an offline ML model, with organic treatment suggestions, 10-language Text-to-Speech, and real-time weather for farmers.</p>
       <div class="proj-tools"><span>Flutter</span><span>Dart</span><span>Gemini API</span><span>Weather API</span><span>Android Studio</span></div>
+      <a class="proj-github" href="https://github.com/DhanushBilla-" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.19 1.18a11 11 0 0 1 5.8 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.62.23 2.82.11 3.12.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+        View on GitHub
+      </a>
     </div>
   </div>
   <p class="proj-hint reveal">tip — <span>tilt your cursor</span> over a card to see it react.</p>
@@ -588,7 +617,7 @@
   <div class="contact-links reveal">
     <a href="mailto:23hp1a1232@gmail.com">✉ 23hp1a1232@gmail.com</a>
     <a href="tel:+919391095143">📞 +91 93910 95143</a>
-    <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav" target="_blank" rel="noopener">LinkedIn ↗</a>
     <a href="https://github.com/DhanushBilla-" target="_blank" rel="noopener">GitHub ↗</a>
     <a href="https://dhanushbilla.github.io/DhanushBilla-.github.io/" target="_blank" rel="noopener">Portfolio ↗</a>
   </div>
@@ -597,24 +626,74 @@
 <footer>© 2026 Dhanush Billa — built with curiosity and a little too much coffee.</footer>
 
 <script>
-  // theme toggle (light / dark)
+  // theme toggle (dark / eye-protection) + auto-switch every 15s, with directional wipe
   (function(){
     const root = document.documentElement;
     const toggleBtn = document.getElementById('themeToggle');
+    const wipe = document.getElementById('themeWipe');
+    const DARK_BG = '#090c14';
+    const EYE_BG = '#f2e8d5';
+    const WIPE_MS = 5000;
+
+    function currentTheme(){
+      return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    }
+
+    function setThemeInstant(theme){
+      if(theme === 'light'){ root.setAttribute('data-theme', 'light'); }
+      else{ root.removeAttribute('data-theme'); }
+      localStorage.setItem('theme', theme);
+    }
+
+    function switchTheme(nextTheme){
+      const prevTheme = currentTheme();
+      if(prevTheme === nextTheme) return;
+
+      const goingDark = nextTheme === 'dark';
+      const oldBg = prevTheme === 'light' ? EYE_BG : DARK_BG;
+
+      // cover the screen with the outgoing color, no transition yet
+      wipe.style.transition = 'none';
+      wipe.style.background = oldBg;
+      wipe.style.opacity = '1';
+      wipe.style.clipPath = 'inset(0% 0 0% 0)'; // fully covered
+
+      // swap the real theme underneath instantly
+      setThemeInstant(nextTheme);
+
+      // force reflow so the browser registers the "covered" state before animating
+      void wipe.offsetHeight;
+
+      requestAnimationFrame(() => {
+        wipe.style.transition = `clip-path ${WIPE_MS}ms ease`;
+        if(goingDark){
+          // switching to black: wipe top -> bottom
+          wipe.style.clipPath = 'inset(100% 0 0% 0)';
+        } else {
+          // switching to light/eye-care: wipe bottom -> top
+          wipe.style.clipPath = 'inset(0% 0 100% 0)';
+        }
+      });
+
+      setTimeout(() => {
+        wipe.style.transition = 'none';
+        wipe.style.opacity = '0';
+        wipe.style.clipPath = 'inset(0% 0 0% 0)';
+      }, WIPE_MS + 60);
+    }
+
+    function toggleTheme(){
+      switchTheme(currentTheme() === 'light' ? 'dark' : 'light');
+    }
+
     const stored = localStorage.getItem('theme');
     const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    const initial = stored || (prefersLight ? 'light' : 'dark');
-    if(initial === 'light'){ root.setAttribute('data-theme', 'light'); }
-    toggleBtn.addEventListener('click', () => {
-      const isLight = root.getAttribute('data-theme') === 'light';
-      if(isLight){
-        root.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        root.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-      }
-    });
+    setThemeInstant(stored || (prefersLight ? 'light' : 'dark'));
+
+    toggleBtn.addEventListener('click', toggleTheme);
+
+    // auto-switch mode every 15 seconds, with a directional 5s wipe
+    setInterval(toggleTheme, 15000);
   })();
 
   // scroll progress
