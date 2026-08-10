@@ -63,7 +63,7 @@
   a{ color: inherit; }
 
   .theme-wipe{
-    position: fixed; inset: 0; z-index: 99999; pointer-events: none;
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
     opacity: 0; clip-path: inset(0% 0 0% 0);
   }
 
@@ -298,6 +298,11 @@
     color: var(--accent); border:1px solid var(--accent); padding:5px 12px; border-radius:999px; letter-spacing:1px;
   }
   .proj-tagbox .blip{ width:6px; height:6px; border-radius:50%; background: var(--accent); animation: pulse 1.4s ease infinite; }
+
+  .proj-index{
+    font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim); letter-spacing: 2px;
+    margin-bottom: 16px; text-transform: uppercase;
+  }
   @keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.4; transform:scale(0.7);} }
 
   .proj-card h3{ font-family: var(--font-display); font-size: 23px; margin: 18px 0 12px 0; }
@@ -450,7 +455,7 @@
     </h1>
   </div>
   <div class="role-line"><span id="roleText"></span><span class="cursor-blink">&nbsp;</span></div>
-  <p class="hero-sub">Information Technology undergraduate building <strong>real-time data pipelines</strong> on <strong>Java,Python, SQL and AWS</strong> — turning raw image and satellite feeds into working, production-style systems. Seeking a <strong>Data Engineering internship</strong> to go deeper on modern pipelines and cloud platforms.</p>
+  <p class="hero-sub">Information Technology undergraduate building <strong>real-time data pipelines</strong> on <strong>Python, SQL and AWS</strong> — turning raw image and satellite feeds into working, production-style systems. Seeking a <strong>Data Engineering internship</strong> to go deeper on modern pipelines and cloud platforms.</p>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary magnetic">View Projects →</a>
     <a href="mailto:23hp1a1232@gmail.com" class="btn btn-outline magnetic">Get in Touch</a>
@@ -467,7 +472,7 @@
   <div class="eyebrow">About</div>
   <h2 class="section-title reveal">Turning raw data<br>into working pipelines.</h2>
   <div class="about-grid">
-    <p class="reveal">Dhanush is an Information Technology student with a strong foundation in <strong style="color:var(--ink)">Java,Python, SQL and cloud-hosted (AWS) development</strong>, built through projects that turn real-world image and satellite data into working, real-time systems. He brings strong analytical and problem-solving skills, with experience translating requirements into solutions across teams during his internships. He's looking for a Data Engineering internship to build hands-on expertise in modern pipelines and cloud platforms and<strong style="color:var(--ink)"> got intrested in Cyber Security</strong>.</p>
+    <p class="reveal">Dhanush is an Information Technology student with a strong foundation in <strong style="color:var(--ink)">Python, SQL and cloud-hosted (AWS) development</strong>, built through projects that turn real-world image and satellite data into working, real-time systems. He brings strong analytical and problem-solving skills, with experience translating requirements into solutions across teams during his internships. He's looking for a Data Engineering internship to build hands-on expertise in modern pipelines and cloud platforms.</p>
     <div class="about-card reveal">
       <h4>// profile.json</h4>
       <div class="row"><span>role</span><span>Aspiring Data Engineer</span></div>
@@ -528,33 +533,36 @@
   <div class="proj-track" id="projTrack">
     <div class="proj-card" style="--accent: var(--green)" data-tilt>
       <div class="proj-scanline"></div>
+      <div class="proj-index">Project 01</div>
       <div class="proj-tagbox"><span class="blip"></span>COMPUTER VISION</div>
       <h3>Criminal Face Detection System</h3>
       <p>Built an end-to-end data pipeline that ingests, processes, and matches facial image data against a centralized MySQL records database in real time, helping law enforcement teams identify individuals and streamlining investigation workflows.</p>
       <div class="proj-tools"><span>Python</span><span>OpenCV</span><span>Face Recognition</span><span>NumPy</span><span>Flask</span><span>MySQL</span></div>
-      <a class="proj-github" href="https://github.com/DhanushBilla-" target="_blank" rel="noopener">
+      <a class="proj-github" href="https://github.com/DhanushBilla/criminal-face-detection" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.19 1.18a11 11 0 0 1 5.8 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.62.23 2.82.11 3.12.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
         View on GitHub
       </a>
     </div>
     <div class="proj-card" style="--accent: var(--blue)" data-tilt>
       <div class="proj-scanline"></div>
+      <div class="proj-index">Project 02</div>
       <div class="proj-tagbox"><span class="blip"></span>CLIMATE AI</div>
       <h3>Real-Time Cloud Predictor</h3>
       <p>Built a real-time data processing pipeline that ingests satellite imagery, detects cloud clusters, and forecasts their movement, speed, and trajectory — classifying conditions as Safe or Risk and triggering automatic email, phone, and device alerts for hazardous weather.</p>
       <div class="proj-tools"><span>Python</span><span>Flask</span><span>CNN</span><span>Computer Vision</span><span>SMTP</span><span>APIs</span></div>
-      <a class="proj-github" href="https://github.com/DhanushBilla-" target="_blank" rel="noopener">
+      <a class="proj-github" href="https://github.com/DhanushBilla/real-time-cloud-main" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.19 1.18a11 11 0 0 1 5.8 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.62.23 2.82.11 3.12.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
         View on GitHub
       </a>
     </div>
     <div class="proj-card" style="--accent: var(--orange)" data-tilt>
       <div class="proj-scanline"></div>
+      <div class="proj-index">Project 03</div>
       <div class="proj-tagbox"><span class="blip"></span>AGRI-TECH</div>
       <h3>Kisan Sahayak</h3>
       <p>An AI-powered Flutter app for plant disease detection using Gemini AI and an offline ML model, with organic treatment suggestions, 10-language Text-to-Speech, and real-time weather for farmers.</p>
       <div class="proj-tools"><span>Flutter</span><span>Dart</span><span>Gemini API</span><span>Weather API</span><span>Android Studio</span></div>
-      <a class="proj-github" href="https://github.com/DhanushBilla-" target="_blank" rel="noopener">
+      <a class="proj-github" href="https://github.com/DhanushBilla/Kisan_Sahayak-master/tree/main/Kisan_Sahayak-master/Kisan_Sahayak-master" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.19 1.18a11 11 0 0 1 5.8 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.62.23 2.82.11 3.12.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
         View on GitHub
       </a>
